@@ -1,15 +1,4 @@
-`define ART 5'd0
-`define LOG 5'd1
-`define JMP 5'd2
-`define BQE 5'd3
-`define BNE 5'd4
-`define CALL 5'd5
-`define RET 5'd6
-`define LD 5'd7
-`define ST 5'd8
-`define ENC 5'd9
-`define DEC 5'd10
-`define IMM 5'd11
+`include "parameter.v"
 
 module control( input [4:0] opcode,
                 input hazard,
