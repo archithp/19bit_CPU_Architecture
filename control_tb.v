@@ -2,24 +2,24 @@ module control_tb;
 
 reg [4:0] opcode;
 reg hazard;
-wire branch, regwrite,memtoreg, memread, memwrite, alusrc, aluop;
-wire regdist, branchtype, push, pop, ret, jump;
+wire ID_branch, ID_regwrite, ID_memtoreg, ID_memread, ID_memwrite, ID_alusrc, ID_aluop;
+wire ID_regdist, ID_branchtype, ID_push, ID_pop, ID_ret, ID_jump;
 
 control control_cpu(.opcode(opcode),
                     .hazard(hazard),
-                    .branch(branch),
-                    .regwrite(regwrite),
-                    .memtoreg(memtoreg),
-                    .memread(memread),
-                    .memwrite(memwrite),
-                    .alusrc(alusrc),
-                    .aluop(aluop),
-                    .regdist(regdist),
-                    .branchtype(branchtype),
-                    .push(push),
-                    .pop(pop),
-                    .ret(ret),
-                    .jump(jump));
+                    .ID_branch(ID_branch),
+                    .ID_regwrite(ID_regwrite),
+                    .ID_memtoreg(ID_memtoreg),
+                    .ID_memread(ID_memread),
+                    .ID_memwrite(ID_memwrite),
+                    .ID_alusrc(ID_alusrc),
+                    .ID_aluop(ID_aluop),
+                    .ID_regdist(ID_regdist),
+                    .ID_branchtype(bID_ranchtype),
+                    .ID_push(ID_push),
+                    .ID_pop(ID_pop),
+                    .ID_ret(ID_ret),
+                    .ID_jump(ID_jump));
 
 initial begin
     $dumpfile("waveform.vcd");
