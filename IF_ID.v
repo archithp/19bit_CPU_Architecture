@@ -1,14 +1,14 @@
 module IF_ID (  input clk,
-                input [18:0] next_instruction,
+                input [18:0] IF_instruction,
                 input IF_IDwrite,
-                input [7:0] pc_plus_one_IF,
-                output reg [7:0] pc_plus_one_ID,
-                output reg [18:0] instruction);
+                input [7:0] IF_pc_plus_one,
+                output reg [7:0] ID_pc_plus_one,
+                output reg [18:0] ID_instruction);
 
     always @(posedge clk) begin
         if (IF_IDwrite) begin
-            instruction <= next_instruction;
-            pc_plus_one_ID <= pc_plus_one_IF;
+            ID_instruction <= IF_instruction;
+            ID_pc_plus_one <= IF_pc_plus_one;
         end
     end
 
