@@ -58,6 +58,8 @@ initial begin
 
     #1
 
+    reg_file_cpu.print_register_values();
+
     #1 $finish;
 
 end

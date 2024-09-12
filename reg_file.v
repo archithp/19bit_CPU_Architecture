@@ -49,4 +49,15 @@ module reg_file(input clk,
 
     end
 
+    // Useful for debuggging ,remove later
+    task print_register_values;
+        integer i;
+        begin
+            $display("Register Values:");
+            for ( i = 0; i < 9 ; i ++ ) begin
+                $display("Register %d = %d",i,register_file[i]);
+            end
+        end
+    endtask
+
 endmodule
