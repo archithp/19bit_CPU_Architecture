@@ -2,9 +2,14 @@ module alu_tb;
 
 reg [31:0] in1, in2;
 reg [4:0] alu_ctrl;
-wire [31:0] out;
+wire [31:0] EX_out;
 
-alu alu_cpu(.in1(in1),.in2(in2),.alu_ctrl(alu_ctrl),.out(out));
+alu alu_cpu(
+    .in1(in1),
+    .in2(in2),
+    .alu_ctrl(alu_ctrl),
+    .EX_out(EX_out)
+    );
 
 initial begin
     $dumpfile("waveform.vcd");
