@@ -85,7 +85,6 @@ module control( input [4:0] opcode,
                 end          
             
                 `IMM: begin
-                    ID_regdist = 1'b1;
                     ID_regwrite = 1'b1;
                     ID_alusrc = 1'b1;
                 end               
