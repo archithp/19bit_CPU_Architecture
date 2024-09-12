@@ -10,6 +10,7 @@ module alu_control (
         case (opcode)
             `ART: operation = funct;
             `LOG: operation = funct; 
+            `CRY: operation = funct; 
             default: operation = 5'd0;
         endcase
     end
