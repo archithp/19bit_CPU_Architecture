@@ -139,23 +139,22 @@ module cpu (input clk,input reset);
         );
 
     wire [1:0] sel1, sel2;
-    wire [31:0] MEM_data = 32'd22;
-    wire [31:0] WB_data = 32'd22;
     wire [31:0] in1, EX_in2_mux, in2;
 
+    wire [31:0] MEM_out;
     alu_mux alu_mux_in1(
         .sel(sel1),
         .EX_data(EX_rd1),
-        .MEM_data(MEM_data),
-        .WB_data(WB_data),
+        .MEM_data(MEM_out),
+        .WB_data(wd),
         .in(in1)
         );
 
     alu_mux alu_mux_in2(
         .sel(sel2),
         .EX_data(EX_rd2),
-        .MEM_data(MEM_data),
-        .WB_data(WB_data),
+        .MEM_data(MEM_out),
+        .WB_data(wd),
         .in(EX_in2_mux)
         );
 
@@ -184,7 +183,7 @@ module cpu (input clk,input reset);
     assign EX_rd_muxed = (EX_regdist) ? EX_rd : EX_rt;
 
     wire MEM_regwrite, MEM_memtoreg, MEM_memread, MEM_memwrite;
-    wire [31:0] MEM_out, MEM_wdata;
+    wire [31:0] MEM_wdata;
     wire [2:0] MEM_rd;
 
     EX_MEM EX_MEM_cpu ( 
