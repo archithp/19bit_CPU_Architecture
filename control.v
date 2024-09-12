@@ -80,14 +80,10 @@ module control( input [4:0] opcode,
                     memwrite = 1'b1;
                    end
 
-                `ENC: begin
+                `CRY: begin
                     regwrite = 1'b1;
                 end          
-
-                `DEC: begin
-                    regwrite = 1'b1;
-                end               
-
+            
                 `IMM: begin
                     regdist = 1'b1;
                     regwrite = 1'b1;

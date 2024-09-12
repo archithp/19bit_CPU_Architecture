@@ -25,10 +25,10 @@ initial begin
     $dumpfile("waveform.vcd");
     $dumpvars(0,control_tb);
 
-    #1 opcode = 5'd8; hazard = 1'b1;
-    #1 opcode = 5'd9; hazard = 1'b1;
-    #1 opcode = 5'd10; hazard = 1'b1;
-    #1 opcode = 5'd11; hazard = 1'b1;
+    #1 opcode = 5'd8; hazard = 1'b0;
+    #1 opcode = 5'd9; hazard = 1'b0;
+    #1 opcode = 5'd10; hazard = 1'b0;
+    #1 opcode = 5'd11; hazard = 1'b0;
     #1 $finish;
 end
 
