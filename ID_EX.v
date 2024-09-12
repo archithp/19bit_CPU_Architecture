@@ -1,4 +1,5 @@
 module ID_EX(   input clk,
+                input [4:0] ID_opcode,
                 input ID_regwrite,
                 input ID_memtoreg,
                 input ID_memread,
@@ -12,6 +13,7 @@ module ID_EX(   input clk,
                 input [2:0] ID_rd,
                 input [31:0] ID_rd1,
                 input [31:0] ID_rd2,
+                output reg [4:0] EX_opcode,
                 output reg EX_regwrite,
                 output reg EX_memtoreg,
                 output reg EX_memread,
@@ -27,19 +29,21 @@ module ID_EX(   input clk,
                 output reg [31:0] EX_rd2);
 
     always @(posedge clk) begin
-        EX_regwrite = ID_regwrite;
-        EX_memtoreg = ID_memtoreg;
-        EX_memread = ID_memread;
-        EX_memwrite = ID_memwrite;
-        EX_alusrc = ID_alusrc;
-        EX_aluop = ID_aluop;
-        EX_regdist = ID_regdist;
-        EX_immediate = ID_immediate;
-        EX_rs = ID_rs;
-        EX_rt = ID_rt;
-        EX_rd = ID_rd;
-        EX_rd1 = ID_rd1;
-        EX_rd2 = ID_rd2;
+        EX_opcode <= ID_opcode;
+        EX_regwrite <= ID_regwrite;
+        EX_memtoreg <= ID_memtoreg;
+        EX_memread <= ID_memread;
+        EX_memwrite <= ID_memwrite;
+        EX_alusrc <= ID_alusrc;
+        EX_aluop <= ID_aluop;
+        EX_regdist <= ID_regdist;
+        EX_immediate <= ID_immediate;
+        EX_rs <= ID_rs;
+        EX_rt <= ID_rt;
+        EX_rd <= ID_rd;
+        EX_rd1 <= ID_rd1;
+        EX_rd2 <= ID_rd2;
+        $display("output EX_regwrite:%b",EX_regwrite);
     end
 
 
