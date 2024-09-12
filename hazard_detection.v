@@ -1,8 +1,8 @@
 module hazard_detection (
     input EX_memread,
     input [2:0] EX_rt,
-    input [2:0] IF_rt,
-    input [2:0] IF_rs,
+    input [2:0] ID_rt,
+    input [2:0] ID_rs,
     output reg hazard,
     output reg IF_IDwrite,
     output reg PCwrite
@@ -13,7 +13,7 @@ module hazard_detection (
         IF_IDwrite = 1'b1;
         PCwrite = 1'b1;
 
-        if (EX_memread && ((EX_rt == IF_rt) || (EX_rt == IF_rs))) begin
+        if (EX_memread && ((EX_rt == ID_rt) || (EX_rt == ID_rs))) begin
             hazard = 1'b1;
             IF_IDwrite = 1'b0;
             PCwrite = 1'b0;
