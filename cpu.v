@@ -1,10 +1,8 @@
 module cpu (input clk,input reset);
     
-
-    // wire [7:0] next_pc = 8'd3;
     wire [7:0] ret_mux_pc;
     wire [7:0] pc;
-    wire pcwrite;
+    wire pcwrite = 1'b1;
 
     pc pc_cpu (
         .clk(clk),
@@ -22,7 +20,7 @@ module cpu (input clk,input reset);
         );
 
 
-    wire IF_IDwrite;
+    wire IF_IDwrite = 1'b1;
     wire [7:0] IF_pc_plus_one;
     assign IF_pc_plus_one = pc + 1;
     wire [7:0] ID_pc_plus_one;
@@ -39,7 +37,7 @@ module cpu (input clk,input reset);
         );
 
 
-    wire hazard;
+    wire hazard = 1'b0;
     wire ID_branch, ID_regwrite, ID_memtoreg, ID_memread, ID_memwrite, ID_alusrc, ID_aluop;
     wire ID_regdist, ID_branchtype, ID_push, ID_pop, ID_ret, ID_jump;
 
@@ -61,14 +59,14 @@ module cpu (input clk,input reset);
         .ID_jump(ID_jump)
         );
 
-    wire [31:0] wd = 32'd43;
+    wire [31:0] wd;
     wire [31:0] ID_rd1, ID_rd2;
     wire [2:0] ws;
 
     reg_file reg_file_cpu(  
         .clk(clk),
         .reset(reset),
-        .ID_regwrite(ID_regwrite),
+        .WB_regwrite(WB_regwrite),
         .ID_push(ID_push),
         .ID_pop(ID_pop),
         .stack_pc(ID_pc_plus_one),
@@ -239,7 +237,8 @@ module cpu (input clk,input reset);
         .WB_rd(WB_rd)
         );    
 
-    assign ws = (WB_memtoreg) ? WB_rdata : WB_out;
+    assign ws = WB_rd;
+    assign wd = (WB_memtoreg) ? WB_rdata : WB_out;
 
     forwarding_unit forwarding_unit_cpu(
         .EX_rs(EX_rs),
@@ -252,22 +251,28 @@ module cpu (input clk,input reset);
         .mux_in2(sel2)
         );
 
-    hazard_detection hazard_detection_cpu(  
-        .EX_memread(EX_memread),
-        .EX_rt(EX_rt),
-        .ID_rs(ID_instruction[13:11]),
-        .ID_rt(ID_instruction[10:8]),
-        .hazard(hazard),
-        .IF_IDwrite(IF_IDwrite),
-        .PCwrite(pcwrite)
-        );
+    // hazard_detection hazard_detection_cpu(  
+    //     .EX_memread(EX_memread),
+    //     .EX_rt(EX_rt),
+    //     .ID_rs(ID_instruction[13:11]),
+    //     .ID_rt(ID_instruction[10:8]),
+    //     .hazard(hazard),
+    //     .IF_IDwrite(IF_IDwrite),
+    //     .PCwrite(pcwrite)
+    //     );
 
-
+    task print_reg_file;
+        begin
+          reg_file_cpu.print_register_values();
+        end
+    endtask
 
 
     always @(posedge clk ) begin
-        $display("clk = %b,pc = %d,IF_inst= %d, ID_inst= %d",clk, pc, IF_instruction,ID_instruction);
+        // $display("clk = %b,pc = %d,IF_inst= %d, ID_inst= %d",clk, pc, IF_instruction,ID_instruction);
         // $display();
     end
+
+    
 
 endmodule
