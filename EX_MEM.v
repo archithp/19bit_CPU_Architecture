@@ -24,6 +24,8 @@ module EX_MEM (
         MEM_out <= EX_out;
         MEM_wdata <= EX_wdata;
         MEM_rd <= EX_rd;
+        $display("input EX_regwrite:%b",EX_regwrite);
+        $display("output MEM_regwrite:%b",MEM_regwrite);
     end
 
 
