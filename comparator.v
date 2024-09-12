@@ -1,10 +1,10 @@
 module comparator (
-    input [31:0] rd1,
-    input [31:0] rd2,
+    input [31:0] ID_rd1,
+    input [31:0] ID_rd2,
     output reg zero
 );
     always @(*) begin
-        if (rd1 == rd2) begin
+        if (ID_rd1 == ID_rd2) begin
             zero = 1'b1;
         end
         else begin
