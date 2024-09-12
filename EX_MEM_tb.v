@@ -16,13 +16,15 @@ EX_MEM EX_MEM_cpu ( .clk(clk),
                     .EX_out(EX_out),
                     .EX_wdata(EX_wdata),
                     .EX_rd(EX_rd),
+                    .EX_in2_mux(EX_in2_mux),
                     .MEM_regwrite(MEM_regwrite),
                     .MEM_memtoreg(MEM_memtoreg),
                     .MEM_memread(MEM_memread),
                     .MEM_memwrite(MEM_memwrite),
                     .MEM_out(MEM_out),
                     .MEM_wdata(MEM_wdata),
-                    .MEM_rd(MEM_rd));
+                    .MEM_rd(MEM_rd),
+                    .MEM_in2_mux(MEM_in2_mux));
 
 initial begin
     clk = 1;
