@@ -43,7 +43,7 @@ module ID_EX(   input clk,
         EX_rd <= ID_rd;
         EX_rd1 <= ID_rd1;
         EX_rd2 <= ID_rd2;
-        $display("output EX_regwrite:%b",EX_regwrite);
+        // $display("output EX_regwrite:%b",EX_regwrite);
     end
 
 
