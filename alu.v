@@ -6,7 +6,6 @@ module alu (
     input [4:0] alu_ctrl,
     output reg [31:0] EX_out
 );
-    
     always @(*) begin
         case (alu_ctrl)
             `ADD: EX_out = in1 + in2;
@@ -22,6 +21,7 @@ module alu (
             `DECRY: EX_out = in1 ^ 32'b00110010101110101100100000011001;
             default: EX_out = 32'd0;
         endcase
+        // $display("in1:%d, in2:%d,EX_out:%d,",in1,in2,EX_out) ; 
     end
 
 endmodule
