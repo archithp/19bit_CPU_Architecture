@@ -4,6 +4,7 @@ module comparator (
     output reg zero
 );
     always @(*) begin
+        $display("rd1: %d, rd2: %d, zero: %d",ID_rd1, ID_rd2, zero);
         if (ID_rd1 == ID_rd2) begin
             zero = 1'b1;
         end
