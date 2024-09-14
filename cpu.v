@@ -52,7 +52,7 @@ module cpu (input clk,input reset);
         .ID_alusrc(ID_alusrc),
         .ID_aluop(ID_aluop),
         .ID_regdist(ID_regdist),
-        .ID_branchtype(bID_ranchtype),
+        .ID_branchtype(ID_branchtype),
         .ID_push(ID_push),
         .ID_pop(ID_pop),
         .ID_ret(ID_ret),
