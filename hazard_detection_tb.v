@@ -1,16 +1,24 @@
 module hazard_detection_tb;
 
-reg EX_memread;
+reg EX_memread,clk;
 reg [2:0] EX_rt, ID_rs, ID_rt;
 wire hazard, PCwrite, IF_IDwrite;
 
-hazard_detection hazard_detection_cpu(  .EX_memread(EX_memread),
+hazard_detection hazard_detection_cpu(  .clk(clk),
+                                        .EX_memread(EX_memread),
                                         .EX_rt(EX_rt),
                                         .ID_rs(ID_rs),
                                         .ID_rt(ID_rt),
                                         .hazard(hazard),
                                         .IF_IDwrite(IF_IDwrite),
                                         .PCwrite(PCwrite));
+
+initial begin
+    clk =1;
+    forever begin
+        #1 clk = ~clk;
+    end
+end
 
 initial begin
     $dumpfile("waveform.vcd");
