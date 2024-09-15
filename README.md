@@ -19,8 +19,8 @@ make view
 - Add the assemble code inside it and run the file, Copy the output as instruction to the inst_mem.v module
 
 ## Architecture
-![architecture](https://github.com/user-attachments/assets/87024c0b-88e0-4f69-96eb-8d50a39abb51)
-![instruction_type](https://github.com/user-attachments/assets/70c320c1-d83d-4a46-982e-3a9da31d9ec7)
+![architecture](https://github.com/archithp/19bit_CPU_Architecture/images/architecture.png)
+![instruction_type](https://github.com/archithp/19bit_CPU_Architecture/images/instruction_type.png)
 
 ## Instruction Supported
 ### Arithmetic Instructions    
