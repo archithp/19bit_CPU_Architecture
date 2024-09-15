@@ -2,7 +2,7 @@ module cpu (input clk,input reset);
     
     wire [7:0] ret_mux_pc;
     wire [7:0] pc;
-    wire pcwrite = 1'b1;
+    wire pcwrite;
 
     pc pc_cpu (
         .clk(clk),
@@ -20,13 +20,13 @@ module cpu (input clk,input reset);
         );
 
 
-    wire IF_IDwrite = 1'b1;
     wire [7:0] IF_pc_plus_one;
     assign IF_pc_plus_one = pc + 1;
     wire [7:0] ID_pc_plus_one;
     wire [18:0] ID_instruction;
 
-
+    wire branch_signal;
+    
     IF_ID IF_ID_cpu (   
         .clk(clk),
         .IF_instruction(IF_instruction),
@@ -37,7 +37,6 @@ module cpu (input clk,input reset);
         );
 
 
-    wire hazard = 1'b0;
     wire ID_branch, ID_regwrite, ID_memtoreg, ID_memread, ID_memwrite, ID_alusrc, ID_aluop;
     wire ID_regdist, ID_branchtype, ID_push, ID_pop, ID_ret, ID_jump;
 
@@ -65,7 +64,7 @@ module cpu (input clk,input reset);
 
     reg_file reg_file_cpu(  
         .clk(clk),
-        .reset(reset),
+        .reset(1'b0),
         .WB_regwrite(WB_regwrite),
         .ID_push(ID_push),
         .ID_pop(ID_pop),
@@ -87,7 +86,7 @@ module cpu (input clk,input reset);
         .zero(zero)
         );
 
-    wire zero_flag, branch_signal;
+    wire zero_flag;
     assign zero_flag = (ID_branchtype)? ~zero : zero;
     assign branch_signal = ID_branch && zero_flag;
 
@@ -250,26 +249,30 @@ module cpu (input clk,input reset);
         .mux_in2(sel2)
         );
 
-    // hazard_detection hazard_detection_cpu(  
-    //     .EX_memread(EX_memread),
-    //     .EX_rt(EX_rt),
-    //     .ID_rs(ID_instruction[13:11]),
-    //     .ID_rt(ID_instruction[10:8]),
-    //     .hazard(hazard),
-    //     .IF_IDwrite(IF_IDwrite),
-    //     .PCwrite(pcwrite)
-    //     );
+    hazard_detection hazard_detection_cpu(  
+        .reset(reset),
+        .EX_memread(EX_memread),
+        .EX_rt(EX_rt),
+        .ID_rs(ID_instruction[13:11]),
+        .ID_rt(ID_instruction[10:8]),
+        .hazard(hazard),
+        .IF_IDwrite(IF_IDwrite),
+        .PCwrite(pcwrite)
+        );
 
     task print_reg_file;
         begin
           reg_file_cpu.print_register_values();
         end
     endtask
-
+    task print_mem_file;
+        begin
+          data_mem_cpu.print_data_memory_values();
+        end
+    endtask
 
     always @(posedge clk ) begin
-        // $display("clk = %b,pc = %d,IF_inst= %d, ID_inst= %d",clk, pc, IF_instruction,ID_instruction);
-        // $display();
+        // $display("pc = %d",pc); //for debugging
     end
 
     
