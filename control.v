@@ -74,10 +74,12 @@ module control( input [4:0] opcode,
                     ID_memread = 1'b1;
                     ID_memtoreg = 1'b1;
                     ID_regwrite = 1'b1;
+                    ID_alusrc = 1'b1;
                 end
 
                 `ST: begin
                     ID_memwrite = 1'b1;
+                    ID_alusrc = 1'b1;
                    end
 
                 `CRY: begin
