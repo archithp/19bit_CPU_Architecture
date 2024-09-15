@@ -12,19 +12,20 @@ module reg_file(input clk,
                 output reg [31:0]ID_rd2);
     integer i;
     integer SP = 7;
-
     reg [31:0] register_file[0:7];
 
-    //remove later
     initial begin
-        register_file[0] = 32'd10;
-        register_file[1] = 32'd20;
-        register_file[2] = 32'd30;
-        register_file[3] = 32'd40;
+        register_file[0] = 32'd0;
+        register_file[1] = 32'd0;
+        register_file[2] = 32'd0;
+        register_file[3] = 32'd0;
+        register_file[4] = 32'd0;
+        register_file[5] = 32'd0;
+        register_file[6] = 32'd0;
+        register_file[7] = 32'd0;
     end
 
-
-    always @(posedge clk or posedge reset) begin
+    always @(posedge clk or posedge reset or rs1 or rs2 or ws or wd) begin
         ID_rd1 = register_file[rs1];
         ID_rd2 = register_file[rs2];
 
@@ -33,19 +34,26 @@ module reg_file(input clk,
                 register_file[i] = 32'd0;
                 end
         end
-        else if (WB_regwrite) begin
-            register_file[ws] = wd;
+
+        else begin
+            if (WB_regwrite) begin
+                register_file[ws] = wd;
             end
 
-        else if (ID_push) begin
-            register_file[SP] = stack_pc + 1;
-            SP = SP - 1;
+            if (ID_push) begin
+                register_file[SP] <= stack_pc;
+                SP <= SP - 1;
+            end
+
+            if (ID_pop) begin
+                SP = SP + 1;
+                ID_rd1 <= register_file[SP];
+                register_file[SP] <= 32'd0;
+            end  
         end
 
-        else if (ID_pop) begin
-            SP = SP + 1;
-            ID_rd1 = register_file[SP];
-        end
+        
+    // $display("ID_rd1: %d, ID_rd2 %d",ID_rd1,ID_rd2);
 
     end
 
