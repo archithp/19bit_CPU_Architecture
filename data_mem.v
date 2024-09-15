@@ -28,4 +28,15 @@ module data_mem (
         
     end
     
+    // Useful for debuggging ,remove later
+    task print_data_memory_values;
+        integer i;
+        begin
+            $display("Memory Values:");
+            for ( i = 0; i < 256 ; i ++ ) begin
+                $display("Memory %d = %d",i,memory[i]);
+            end
+        end
+    endtask
+
 endmodule
