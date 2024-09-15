@@ -19,6 +19,7 @@ module alu (
             `XOR: EX_out = in1 ^ in2;
             `ENCRY: EX_out = in1 ^ 32'b00110010101110101100100000011001; //XOR Encryption 
             `DECRY: EX_out = in1 ^ 32'b00110010101110101100100000011001;
+            `IMMED: EX_out = in2;
             default: EX_out = 32'd0;
         endcase
         // $display("in1:%d, in2:%d,EX_out:%d,",in1,in2,EX_out) ; 
