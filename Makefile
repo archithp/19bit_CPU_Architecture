@@ -5,7 +5,12 @@ GTK = gtkwave
 OUT = executable_file
 VIEW = waveform.vcd
 
-SRC = cpu.v pc.v inst_mem.v IF_ID.v control.v reg_file.v comparator.v ID_EX.v alu_mux.v alu_control.v alu.v EX_MEM.v data_mem.v MEM_WB.v forwarding_unit.v hazard_detection.v parameter.v
+SRC_DIR = modules
+SRC = 	$(SRC_DIR)/cpu.v $(SRC_DIR)/pc.v $(SRC_DIR)/inst_mem.v $(SRC_DIR)/IF_ID.v $(SRC_DIR)/control.v $(SRC_DIR)/reg_file.v \
+		$(SRC_DIR)/comparator.v $(SRC_DIR)/ID_EX.v $(SRC_DIR)/alu_mux.v $(SRC_DIR)/alu_control.v $(SRC_DIR)/alu.v \
+		$(SRC_DIR)/EX_MEM.v $(SRC_DIR)/data_mem.v $(SRC_DIR)/MEM_WB.v $(SRC_DIR)/forwarding_unit.v \
+		$(SRC_DIR)/hazard_detection.v $(SRC_DIR)/parameter.v
+		
 TB = cpu_tb.v
 
 $(OUT): $(SRC) $(TB)
