@@ -18,7 +18,10 @@ module cpu_tb;
            reset = 1'b1;
         #1 reset = 1'b0;
         
-        #10 vicharak_cpu.print_reg_file();
+        #200
+        vicharak_cpu.print_reg_file();
+        vicharak_cpu.print_mem_file();
+
         $finish;
 
     end
