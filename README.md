@@ -3,7 +3,7 @@
 ## Environment Setup and Installation (Ubuntu)
 ```bash
 sudo apt install iverilog gtkwave
-https://github.com/archithp/vicharak_cpu.git
+https://github.com/archithp/19bit_CPU_Architecture.git
 ```
 ## Running the model
 - To compile and run the Verilog files

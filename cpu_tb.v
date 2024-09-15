@@ -2,7 +2,7 @@ module cpu_tb;
 
     reg clk ,reset;
 
-    cpu vicharak_cpu(.clk(clk),.reset(reset));
+    cpu cpu_19bit(.clk(clk),.reset(reset));
 
     initial begin
         clk = 1;
@@ -19,8 +19,8 @@ module cpu_tb;
         #1 reset = 1'b0;
         
         #200
-        vicharak_cpu.print_reg_file();
-        vicharak_cpu.print_mem_file();
+        cpu_19bit.print_reg_file();
+        cpu_19bit.print_mem_file();
 
         $finish;
 
