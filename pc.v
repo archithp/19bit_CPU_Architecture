@@ -6,7 +6,7 @@ module pc (
     output reg [7:0] pc
 );
     
-    always @(next_pc or posedge reset) begin
+    always @(next_pc or posedge reset or pcwrite) begin
         if (reset) begin
             pc = 8'b0;
         end
