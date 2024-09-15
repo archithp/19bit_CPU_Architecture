@@ -19,6 +19,7 @@
 `define AND 5'd6
 `define OR 5'd7
 `define XOR 5'd8
-`define ENCRY 5'd9
-`define DECRY 5'd10
-`define IMMED 5'd11
+`define NOT 5'd9
+`define ENCRY 5'd10
+`define DECRY 5'd11
+`define IMMED 5'd12
