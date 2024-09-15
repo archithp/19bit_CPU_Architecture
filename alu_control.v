@@ -11,6 +11,7 @@ module alu_control (
             `ART: operation = funct;
             `LOG: operation = funct; 
             `CRY: operation = funct; 
+            `IMM: operation = `IMMED; 
             default: operation = 5'd0;
         endcase
     end
