@@ -17,6 +17,7 @@ module alu (
             `AND: EX_out = in1 & in2;
             `OR: EX_out = in1 | in2;
             `XOR: EX_out = in1 ^ in2;
+            `NOT: EX_out = ~in1;
             `ENCRY: EX_out = in1 ^ 32'b00110010101110101100100000011001; //XOR Encryption 
             `DECRY: EX_out = in1 ^ 32'b00110010101110101100100000011001;
             `IMMED: EX_out = in2;
